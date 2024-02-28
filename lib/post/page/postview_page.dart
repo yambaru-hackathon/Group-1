@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:group_1/post/page/post_detail_page.dart';
+import 'package:group_1/post/page/feed_page.dart';
 import 'package:provider/provider.dart';
 
 import '../service/database_service.dart';
@@ -161,7 +161,7 @@ class PostViewPageState extends State<PostViewPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PostDetailPage(
+                              builder: (context) => PostFeedPage(
                                 imageData: filteredImageDataList[index],
                               ),
                             ),

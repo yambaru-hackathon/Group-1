@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 // 投稿詳細ページ
-class PostDetailPage extends StatefulWidget {
-  const PostDetailPage({super.key, required this.imageData});
+class PostFeedPage extends StatefulWidget {
+  const PostFeedPage({super.key, required this.imageData});
 
   final Map<String, dynamic> imageData;
 
   @override
-  PostDetailPageState createState() => PostDetailPageState();
+  PostFeedPageState createState() => PostFeedPageState();
 }
 
-class PostDetailPageState extends State<PostDetailPage> {
+class PostFeedPageState extends State<PostFeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
