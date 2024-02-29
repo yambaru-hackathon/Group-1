@@ -1,52 +1,50 @@
 import 'package:flutter/material.dart';
 
-// 投稿詳細ページ
-class PostFeedPage extends StatefulWidget {
-  const PostFeedPage({super.key, required this.imageData});
+import 'feed_detail_page.dart';
 
-  final Map<String, dynamic> imageData;
+/// フィードページを表すウィジェット
+class FeedPage extends StatelessWidget {
+  final List<Map<String, dynamic>> imageDataList; // 投稿データのリスト
 
-  @override
-  PostFeedPageState createState() => PostFeedPageState();
-}
+  const FeedPage({
+    super.key,
+    required this.imageDataList,
+  });
 
-class PostFeedPageState extends State<PostFeedPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFE1BEE7),
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // 横方向のアイテム数
+        childAspectRatio: 1.0, // アスペクト比
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Row(
+      itemCount: imageDataList.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            // 詳細ページに遷移
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return FeedDetailPage(
+                  imageData: imageDataList[index], // タップされたアイテムのデータを詳細ページに渡す
+                );
+              }),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Column(
               children: [
-                const Icon(
-                  Icons.account_circle_outlined,
-                  size: 50,
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: Text(widget.imageData['country'] ?? ''),
-                    subtitle: Text(
-                      '${widget.imageData['gender'] ?? ''}・${widget.imageData['tpo'] ?? ''}・${widget.imageData['season'] ?? ''}',
-                    ),
-                  ),
+                Image.network(
+                  imageDataList[index]['url'],
+                  fit: BoxFit.cover,
                 ),
               ],
             ),
           ),
-          AspectRatio(
-            aspectRatio: 1.0,
-            child: Image.network(
-              widget.imageData['url'],
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

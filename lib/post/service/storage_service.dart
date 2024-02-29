@@ -9,11 +9,8 @@ class StorageService {
   final FirebaseStorage storage = FirebaseStorage.instance;
 
   Future<String> uploadImage(String? filePath) async {
-    if (filePath == null) {
-      throw ArgumentError('File path cannot be null');
-    }
     // ファイルを指定のパスにアップロード
-    final File file = File(filePath);
+    final File file = File(filePath!);
     final String storagePath = 'post/${basename(file.path)}';
 
     // metadataのcontentTypeを画像（post/png）に指定する。
@@ -29,3 +26,17 @@ class StorageService {
     return downloadURL;
   }
 }
+
+/// 今は無視していいエラー
+/// 「Cloud Storage の設定でFirebase Authentication での認証を得ようとしている」
+
+// E/StorageUtil(17268): error getting token java.util.concurrent.ExecutionException: com.google.firebase.internal.api.FirebaseNoSignedInUserException: Please sign in before trying to get a token.
+// W/StorageUtil(17268): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+// W/NetworkRequest(17268): no auth token for request
+// D/UploadTask(17268): Waiting 0 milliseconds
+// E/StorageUtil(17268): error getting token java.util.concurrent.ExecutionException: com.google.firebase.internal.api.FirebaseNoSignedInUserException: Please sign in before trying to get a token.
+// W/StorageUtil(17268): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+// W/NetworkRequest(17268): no auth token for request
+// E/StorageUtil(17268): error getting token java.util.concurrent.ExecutionException: com.google.firebase.internal.api.FirebaseNoSignedInUserException: Please sign in before trying to get a token.
+// W/StorageUtil(17268): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+// W/NetworkRequest(17268): no auth token for request

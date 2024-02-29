@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_1/component/custom_appbar.dart';
 
 class Pages2 extends StatefulWidget {
   const Pages2({super.key});
@@ -11,9 +12,7 @@ class _Pages2State extends State<Pages2> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('相場情報'),
-      ),
+      appBar: CustomAppBar(title: '海外情報'),
     );
   }
 }

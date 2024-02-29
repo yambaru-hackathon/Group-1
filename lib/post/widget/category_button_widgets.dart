@@ -59,9 +59,10 @@ class GenderDropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> genderOptions = ['男性', '女性', '選択しない'];
+
     return DropdownButton<String>(
-      value: genderOptions.contains(value) ? value : null,
-      onChanged: (newValue) => onChanged(newValue == '選択しない' ? null : newValue),
+      value: value,
+      onChanged: (newValue) => onChanged(newValue ?? '選択しない'),
       items: genderOptions.map((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -95,7 +96,7 @@ class TPODropdownButton extends StatelessWidget {
     ];
     return DropdownButton<String>(
       value: value,
-      onChanged: (newValue) => onChanged(newValue == '選択しない' ? null : newValue),
+      onChanged: (newValue) => onChanged(newValue ?? '選択しない'),
       items: tpoOptions.map((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -121,7 +122,7 @@ class SeasonDropdownButton extends StatelessWidget {
     List<String> seasonOptions = ['春', '夏', '秋', '冬', '選択しない'];
     return DropdownButton<String>(
       value: value,
-      onChanged: (newValue) => onChanged(newValue == '選択しない' ? null : newValue),
+      onChanged: (newValue) => onChanged(newValue),
       items: seasonOptions.map((String value) {
         return DropdownMenuItem<String>(
           value: value,

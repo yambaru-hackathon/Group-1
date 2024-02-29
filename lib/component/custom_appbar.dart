@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// カスタムしたアップバーのウィジェット
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Color backgroundColor;

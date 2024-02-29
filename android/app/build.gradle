@@ -59,9 +59,18 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 flutter {
     source '../..'
 }
 
+dependencies {
+
+    // uCrop - Image Cropping Library for Android
+    implementation 'com.github.yalantis:ucrop:2.2.5'
+
+}

@@ -9,14 +9,11 @@ import 'package:group_1/post/service/image_picker_service.dart';
 import '../service/storage_service.dart';
 import '../widget/category_button_widgets.dart';
 
-final originalImageDataListProvider =
-    StateProvider<List<Map<String, dynamic>>>((_) => []);
-final filteredImageDataListProvider =
-    StateProvider<List<Map<String, dynamic>>>((_) => []);
-final countryProvider = StateProvider<String?>((_) => null); // countryのプロバイダー
-final genderProvider = StateProvider<String?>((_) => null); // genderのプロバイダー
+// データの状態を管理するStateProvider
+final countryProvider = StateProvider<String?>((_) => null);
+final genderProvider = StateProvider<String?>((_) => null);
 
-// 新規投稿ページ
+/// 新規投稿ページを表すウィジェット
 class AddPostPage extends StatefulWidget {
   const AddPostPage({super.key});
 
@@ -24,6 +21,7 @@ class AddPostPage extends StatefulWidget {
   AddPostPageState createState() => AddPostPageState();
 }
 
+/// 新規投稿ページの状態を管理するState
 class AddPostPageState extends State<AddPostPage> {
   final StorageService storageService = StorageService();
   final DatabaseService databaseService = DatabaseService();
@@ -33,9 +31,6 @@ class AddPostPageState extends State<AddPostPage> {
   String? gender;
   String? tpo;
   String? season;
-  int? temperature;
-  int? humidity;
-  int? height;
 
   void setSelectedCountry(String? selectedCountry) {
     setState(() {
@@ -58,24 +53,6 @@ class AddPostPageState extends State<AddPostPage> {
   void setSelectedSeason(String? selectedSeason) {
     setState(() {
       season = selectedSeason;
-    });
-  }
-
-  void setSelectedHumidity(int? selectedHumidity) {
-    setState(() {
-      humidity = selectedHumidity;
-    });
-  }
-
-  void setSelectedTemperature(int? selectedTemperature) {
-    setState(() {
-      temperature = selectedTemperature;
-    });
-  }
-
-  void setSelectedHeight(int? selectedHeight) {
-    setState(() {
-      height = selectedHeight;
     });
   }
 
@@ -114,11 +91,8 @@ class AddPostPageState extends State<AddPostPage> {
         downloadURL,
         country!,
         gender ?? '',
-        height != null ? height.toString() : '',
         tpo ?? '',
         season ?? '',
-        temperature != null ? temperature.toString() : '',
-        humidity != null ? humidity.toString() : '',
       );
 
       // ナビゲーションを閉じる
@@ -148,16 +122,19 @@ class AddPostPageState extends State<AddPostPage> {
                         file: File(filePath!), screenWidth: screenWidth),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('国'),
+                  const SizedBox(width: 8),
                   CountryDropdownButton(
                     value: country,
                     onChanged: setSelectedCountry,
-                    removeOption: false,
+                    removeOption: true,
                   ),
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('性別'),
                   GenderDropdownButton(
@@ -165,20 +142,24 @@ class AddPostPageState extends State<AddPostPage> {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('TPO'),
                   TPODropdownButton(value: tpo, onChanged: setSelectedTPO),
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('季節'),
                   SeasonDropdownButton(
                       value: season, onChanged: setSelectedSeason),
                 ],
               ),
-              const Row(
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text('※画像と国は必ず選択してください'),
                   Text('※時間があればここに気温や湿度を入力できるようにしたい...'),
                 ],
               ),
@@ -202,7 +183,7 @@ class AddPostPageState extends State<AddPostPage> {
   }
 }
 
-// 画像を表示する
+/// 画像を表示する
 class ImageDisplay extends StatelessWidget {
   const ImageDisplay({
     super.key,
@@ -224,7 +205,7 @@ class ImageDisplay extends StatelessWidget {
   }
 }
 
-// 画像が選択されていない場合に表示されるコンテナ
+/// 画像が選択されていない場合に表示されるコンテナ
 class PlaceholderContainer extends StatelessWidget {
   const PlaceholderContainer({
     super.key,

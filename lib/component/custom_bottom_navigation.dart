@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MyBottomNavigationBar extends StatelessWidget {
+/// カスタムしたボトムナビゲーションバーのウィジェット
+class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const MyBottomNavigationBar({
+  const CustomBottomNavigationBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
@@ -19,7 +20,7 @@ class MyBottomNavigationBar extends StatelessWidget {
             Icons.home,
             color: currentIndex == 0 ? Colors.purple : null,
           ),
-          label: 'ホーム',
+          label: '海外情報',
         ),
         BottomNavigationBarItem(
           icon: Icon(
@@ -30,17 +31,10 @@ class MyBottomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.language,
+            Icons.accessibility,
             color: currentIndex == 2 ? Colors.purple : null,
           ),
-          label: '海外情報',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.accessibility,
-            color: currentIndex == 3 ? Colors.purple : null,
-          ),
-          label: '現地のコーデ',
+          label: '現地人のコーデ',
         ),
       ],
       type: BottomNavigationBarType.fixed,
