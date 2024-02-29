@@ -10,44 +10,64 @@ class Info_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body:Center(
-        child:Column(
-          children: [
-            // Within the `FirstRoute` widget
-            ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FoodPage()), 
-                
-              );
-            }, 
-            child: null,
-            ),
-            ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GiftPage()), 
-                
-              );
-            }, 
-            child: null,
-            ),ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RulePage()), 
-                
-              );
-            }, 
-            child: null,
-            ),
-          ],
-
-        ),
-          )
-    );
+        appBar: AppBar(),
+        body: Center(
+          child: Column(
+            children: [
+              // Within the `FirstRoute` widget
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FoodPage()),
+                  );
+                },
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color.fromARGB(238, 252, 235, 254),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    width: 500,
+                    margin: const EdgeInsets.all(8.0),
+                    child: Text("食文化")),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GiftList()),
+                  );
+                },
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color.fromARGB(238, 252, 235, 254),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    width: 500,
+                    margin: const EdgeInsets.all(8.0),
+                    child: Text("お土産")),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RulePage()),
+                  );
+                },
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color.fromARGB(238, 252, 235, 254),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    width: 500,
+                    margin: const EdgeInsets.all(8.0),
+                    child: Text("常識")),
+              ),
+            ],
+          ),
+        ));
   }
 }
