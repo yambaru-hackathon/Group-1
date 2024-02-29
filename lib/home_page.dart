@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:group_1/pages-2.dart';
-import 'package:group_1/pages-3.dart';
 import 'package:group_1/post/page/post_view_page.dart';
 import 'package:group_1/post/service/database_service.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:provider/provider.dart';
 
 import 'component/custom_bottom_navigation.dart';
+import 'exchange.dart';
+import 'info.dart';
 
 /// ボトムナビゲーションの状態管理
 class CurrentIndexNotifier extends StateNotifier<int> {
@@ -32,8 +32,8 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // ページのリスト
     const List<Widget> pages = [
-      Pages2(),
-      Pages3(),
+      Info_Page(),
+      Exchange(),
       PostViewPage(), // 現地人のコーデ
     ];
 

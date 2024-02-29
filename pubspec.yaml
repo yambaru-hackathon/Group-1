@@ -26,6 +26,7 @@ dependencies:
   flutter_riverpod: ^2.4.10
   riverpod_annotation: ^2.3.4
   provider: ^6.1.1
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:
@@ -41,5 +42,3 @@ flutter:
 
   uses-material-design: true
 
-  assets:
-    - assets/

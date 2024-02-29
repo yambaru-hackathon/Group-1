@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'component/custom_appbar.dart';
 import 'food/food_page.dart';
 import 'gift/gift_page.dart';
 import 'rule/rule_page.dart';
@@ -10,7 +11,7 @@ class Info_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: const CustomAppBar(title: '海外情報'),
         body: Center(
           child: Column(
             children: [

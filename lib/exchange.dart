@@ -1,35 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:group_1/table.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-void main() {
-  runApp(MyApp());
-}
+import 'component/custom_appbar.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Exchange extends StatefulWidget {
+  const Exchange({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const MyHomePage(title: '誕生年リスト'),
-    );
-  }
+  ExchangeState createState() => ExchangeState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  
+class ExchangeState extends State<Exchange> {
   // 入力された金額を保持する変数
   double _amount = 0;
+
   // コンボボックスで選択された通貨の種類を保持する変数
   String? _currency = 'SGD';
 
@@ -71,9 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('日本円との相場'),
-      ),
+      appBar: const CustomAppBar(title: '海外情報'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -82,16 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Container(
                 padding: EdgeInsets.all(8.0),
-                margin: EdgeInsets.symmetric(
-                            vertical: 15.0, horizontal: 0),
+                margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Color.fromARGB(238, 252, 235, 254),
                   boxShadow: [
-                    BoxShadow(
-                      color:Colors.black12,
-                      offset: Offset(5, 5)
-                    ),],
+                    BoxShadow(color: Colors.black12, offset: Offset(5, 5)),
+                  ],
                 ),
                 child: Text(
                   "為替",
@@ -114,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           _amount = double.parse(value);
                         });
                       },
-                      decoration:
-                          InputDecoration(labelText: 'シンガポールドルを入力', prefixText: '\$'),
+                      decoration: InputDecoration(
+                          labelText: 'シンガポールドルを入力', prefixText: '\$'),
                     ),
                     DropdownButton(
                       value: _currency,
@@ -136,10 +118,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         //   value: 'MYR',
                         //   child: Text('MYR - マレーシアリンギット'),
                         // ),
-                         DropdownMenuItem(
-                           value: 'PHP',
-                           child: Text('フィリピン・ペソ'),
-                         ),
+                        DropdownMenuItem(
+                          value: 'PHP',
+                          child: Text('フィリピン・ペソ'),
+                        ),
                         // DropdownMenuItem(
                         //   value: 'NZD',
                         //   child: Text('NZD - ニュージーランドドル'),
@@ -169,10 +151,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 80),
                     ElevatedButton(
-                      child: Text('計算',style:TextStyle(fontSize:30)),
+                      child: Text('計算', style: TextStyle(fontSize: 30)),
                       onPressed: _calculate,
-                      
-                      
                     ),
                     SizedBox(height: 10),
                     Text('換算の結果: $_result$_currencyです',
@@ -182,29 +162,36 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 padding: EdgeInsets.all(8.0),
-                margin: const EdgeInsets.symmetric(
-                            vertical: 15.0, horizontal: 0),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15.0, horizontal: 0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(238, 252, 235, 254),
-                  boxShadow: [
-                    BoxShadow(
-                      color:Colors.black12,
-                      offset: Offset(5, 5)
-                    ),]
-                ),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromARGB(238, 252, 235, 254),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black12, offset: Offset(5, 5)),
+                    ]),
                 child: Text(
                   "相場",
-                  style: TextStyle(fontSize: 30,),
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
                 ),
               ),
-              Text("食費",
-              style:TextStyle(fontSize: 20,),
+              Text(
+                "食費",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
               FoodList(),
-              SizedBox(height: 40,),
-              Text("交通費",
-              style:TextStyle(fontSize: 20,),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                "交通費",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
               TransportList(),
             ],
