@@ -83,7 +83,17 @@ class AddPostPageState extends State<AddPostPage> {
     }
 
     try {
+      // 画像のアップロード
+      String downloadURL = await storageService.uploadImage(filePath!);
+
       // データベースに追加
+      await databaseService.addData(
+        downloadURL,
+        country!,
+        gender ?? '',
+        tpo ?? '',
+        season ?? '',
+      );
 
       // ナビゲーションを閉じる
       Navigator.pop(context);
@@ -94,14 +104,21 @@ class AddPostPageState extends State<AddPostPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Scaffold(
       appBar: AppBar(title: const Text('新規投稿')),
       body: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 0.9,
           child: ListView(
             children: [
               InkWell(
@@ -109,7 +126,7 @@ class AddPostPageState extends State<AddPostPage> {
                 child: filePath == null
                     ? PlaceholderContainer(screenWidth: screenWidth)
                     : ImageDisplay(
-                        file: File(filePath!), screenWidth: screenWidth),
+                    file: File(filePath!), screenWidth: screenWidth),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,7 +180,7 @@ class AddPostPageState extends State<AddPostPage> {
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 56),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           onPressed: sharePost,
           child: const Text('シェア'),
@@ -207,11 +224,17 @@ class PlaceholderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme
+          .of(context)
+          .colorScheme
+          .surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: Theme.of(context).colorScheme.outline,
+          color: Theme
+              .of(context)
+              .colorScheme
+              .outline,
         ),
       ),
       child: SizedBox(
@@ -223,14 +246,20 @@ class PlaceholderContainer extends StatelessWidget {
             children: [
               Icon(
                 Icons.photo_camera,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onSurfaceVariant,
                 size: 50,
               ),
               const SizedBox(height: 8),
               Text(
                 '画像を選択',
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .onSurfaceVariant,
                   fontWeight: FontWeight.bold,
                 ),
               ),
