@@ -23,7 +23,7 @@ class RulePage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      color: Theme.of(context).colorScheme.primaryContainer,
                     ),
                     width: MediaQuery.of(context).size.width,
                     child: const Padding(
@@ -174,7 +174,7 @@ class RuleTitleText extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: Theme.of(context).colorScheme.primaryContainer,
       ),
       padding: const EdgeInsets.all(8.0),
       width: 500,
