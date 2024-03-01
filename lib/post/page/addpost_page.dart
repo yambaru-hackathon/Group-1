@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:group_1/post/service/database_service.dart';
-import 'package:group_1/post/service/image_picker_service.dart';
 
+import '../service/database_service.dart';
+import '../service/image_picker_service.dart';
 import '../service/storage_service.dart';
 import '../widget/category_button_widgets.dart';
 
@@ -83,17 +83,7 @@ class AddPostPageState extends State<AddPostPage> {
     }
 
     try {
-      // 画像のアップロード
-      String downloadURL = await storageService.uploadImage(filePath!);
-
       // データベースに追加
-      await databaseService.addData(
-        downloadURL,
-        country!,
-        gender ?? '',
-        tpo ?? '',
-        season ?? '',
-      );
 
       // ナビゲーションを閉じる
       Navigator.pop(context);
@@ -160,7 +150,7 @@ class AddPostPageState extends State<AddPostPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('※画像と国は必ず選択してください'),
-                  Text('※時間があればここに気温や湿度を入力できるようにしたい...'),
+                  // Text('※時間があればここに気温や湿度を入力できるようにしたい...'),
                 ],
               ),
             ],
@@ -216,31 +206,36 @@ class PlaceholderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: screenWidth,
-      height: screenWidth,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
+    return Card(
+      color: Theme.of(context).colorScheme.surface,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline,
+        ),
       ),
-      child: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.photo_camera,
-              color: Colors.grey,
-              size: 50,
-            ),
-            SizedBox(height: 8),
-            Text(
-              '画像を選択',
-              style: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
+      child: SizedBox(
+        width: screenWidth,
+        height: screenWidth,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.photo_camera,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                size: 50,
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Text(
+                '画像を選択',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

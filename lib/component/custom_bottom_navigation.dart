@@ -16,30 +16,39 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           icon: Icon(
             Icons.home,
-            color: currentIndex == 0 ? Colors.purple : null,
+            color: currentIndex == 0
+                ? Theme.of(context).colorScheme.onSecondaryContainer
+                : null,
           ),
           label: '海外情報',
         ),
         BottomNavigationBarItem(
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           icon: Icon(
             Icons.attach_money,
-            color: currentIndex == 1 ? Colors.purple : null,
+            color: currentIndex == 1
+                ? Theme.of(context).colorScheme.onSecondaryContainer
+                : null,
           ),
           label: '相場情報',
         ),
         BottomNavigationBarItem(
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           icon: Icon(
             Icons.accessibility,
-            color: currentIndex == 2 ? Colors.purple : null,
+            color: currentIndex == 2
+                ? Theme.of(context).colorScheme.onSecondaryContainer
+                : null,
           ),
           label: '現地人のコーデ',
         ),
       ],
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.purple.shade50,
-      selectedItemColor: Colors.purple,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      selectedItemColor: Theme.of(context).colorScheme.onSurface,
       currentIndex: currentIndex,
       onTap: onTap,
     );

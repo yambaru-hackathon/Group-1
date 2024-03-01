@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'ranktext.dart';
 
 class GiftRankPage extends StatelessWidget {
@@ -7,20 +8,19 @@ class GiftRankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('お土産'),
-        backgroundColor: Color.fromARGB(238, 252, 235, 254),
+      body: const Scrollbar(
+        thumbVisibility: true,
+        thickness: 10,
+        radius: Radius.circular(16),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GiftRankListView(),
+            ],
+          ),
+        ),
       ),
-      body: Scrollbar(
-          thumbVisibility: true,
-          thickness: 10,
-          radius: Radius.circular(16),
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const GiftRankListView(),
-            ]),
-          )),
     );
   }
 }
@@ -29,6 +29,7 @@ class GiftRankText extends StatelessWidget {
   final String no1;
   final String no3;
   final String no2;
+
   const GiftRankText({
     required this.no1,
     required this.no3,
@@ -38,24 +39,21 @@ class GiftRankText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GiftRankno1Text(no1, no2, no3),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GiftRankno1Text(no1, no2, no3),
+      ],
     );
   }
 }
 
-//一覧表示
 class GiftRankListView extends StatelessWidget {
   const GiftRankListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 2100,
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
@@ -76,11 +74,11 @@ class GiftRankListView extends StatelessWidget {
   }
 }
 
-//　GiftRankに使うテキスト コンテナを用いてランキング表示
 class GiftRankno1Text extends StatelessWidget {
   final String no1;
   final String no2;
   final String no3;
+
   const GiftRankno1Text(this.no1, this.no2, this.no3, {super.key});
 
   @override
@@ -88,31 +86,30 @@ class GiftRankno1Text extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Color.fromARGB(238, 252, 235, 254),
+        color: const Color.fromARGB(238, 252, 235, 254),
       ),
       padding: const EdgeInsets.all(8.0),
       width: 500,
       margin: const EdgeInsets.all(8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             no1,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),
           ),
           Text(
             no2,
-            style: TextStyle(
-              
+            style: const TextStyle(
               fontSize: 15,
             ),
           ),
           Text(
             no3,
-            style: TextStyle(
-              
+            style: const TextStyle(
               fontSize: 15,
             ),
           ),

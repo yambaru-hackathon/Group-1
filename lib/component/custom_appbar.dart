@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 
 /// カスタムしたアップバーのウィジェット
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../main.dart';
+
+class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final String title;
-  final Color backgroundColor;
-  final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
     required this.title,
-    this.backgroundColor = const Color(0xFFE1BEE7),
-    this.actions,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
-      backgroundColor: backgroundColor,
-      centerTitle: true,
-      title: Text(title),
-      actions: actions,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
+      actions: [
+        IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: () => ref.read(themeModeProvider.notifier).toggleTheme())
+      ],
     );
   }
 

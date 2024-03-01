@@ -6,8 +6,8 @@ import 'package:provider/provider.dart' as provider;
 import 'package:provider/provider.dart';
 
 import 'component/custom_bottom_navigation.dart';
-import 'exchange.dart';
-import 'info.dart';
+import 'exchange/exchange.dart';
+import 'info/info.dart';
 
 /// ボトムナビゲーションの状態管理
 class CurrentIndexNotifier extends StateNotifier<int> {
@@ -32,7 +32,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // ページのリスト
     const List<Widget> pages = [
-      Info_Page(),
+      InfoPage(),
       Exchange(),
       PostViewPage(), // 現地人のコーデ
     ];
