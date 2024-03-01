@@ -46,4 +46,4 @@ flutter:
 
 flutter_icons:
   android: true
-  image_path_android: "lib/asset/instagram-icon.png"
+  image_path_android: "lib/asset/group1-icon.png"
